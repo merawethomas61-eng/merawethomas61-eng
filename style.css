@@ -1,0 +1,70 @@
+/* style.css */
+
+/* Grunnleggende stil */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Header */
+header {
+  background-color: #222;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+/* Skjema */
+form {
+  margin: 20px auto;
+  max-width: 400px;
+  display: flex;
+  gap: 10px;
+}
+
+input[type="url"] {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+button {
+  padding: 10px 16px;
+  background-color: #ff6a00;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #e55a00;
+}
+
+/* Preview-seksjon */
+#preview {
+  margin: 30px auto;
+  max-width: 600px;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.blur {
+  filter: blur(4px);
+  color: #999;
+}
+
+.cta {
+  display: inline-block;
+  margin-top: 12px;
+  background: #222;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+}
