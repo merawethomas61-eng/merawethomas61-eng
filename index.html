@@ -2,10 +2,46 @@
 <html lang="no">
 <head>
   <meta charset="UTF-8">
-  <title>SmartAi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SmartAi – SEO analyse</title>
+  <!-- Koble til CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>Velkommen til SmartAi</h1>
-  <p>Skriv inn din URL for gratis SEO-analyse.</p>
+  <!-- Header -->
+  <header>
+    <h1>SmartAi</h1>
+    <p>Få en gratis smakebit på SEO-innsikt – lås opp full rapport når du er klar.</p>
+  </header>
+
+  <!-- Skjema for URL -->
+  <main>
+    <form id="url-form">
+      <label for="url-input">Din nettside-URL:</label>
+      <input id="url-input" name="url" type="url" placeholder="https://dittdomene.no" required>
+      <button type="submit">Analyser</button>
+    </form>
+
+    <!-- Preview-seksjon -->
+    <section id="preview">
+      <h2>Gratis preview</h2>
+      <ul>
+        <li><strong>Tittel:</strong> Mangler eller er for lang</li>
+        <li><strong>Lastetid:</strong> Over anbefalt terskel</li>
+      </ul>
+      <div class="blur">
+        <p>Full rapport: 14 funn og konkrete fikser (låst)</p>
+      </div>
+      <a class="cta" href="#">Lås opp full rapport</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <small>© 2025 SmartAi</small>
+  </footer>
+
+  <!-- Koble til JavaScript -->
+  <script src="script.js"></script>
 </body>
 </html>
