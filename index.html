@@ -1,47 +1,202 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SmartAi – SEO analyse</title>
-  <!-- Koble til CSS -->
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KraftAi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Inter", sans-serif;
+        }
+
+        body {
+            scroll-behavior: smooth;
+            background: #ffffff;
+            color: #0a0a0a;
+        }
+
+        /* Background */
+        .hero-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-image: url('background.jpg'); /* replace */
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.65);
+            z-index: -1;
+            transition: filter 0.4s ease;
+        }
+
+        /* Navbar */
+        nav {
+            width: 100%;
+            padding: 25px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            backdrop-filter: blur(8px);
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: #ff7a1a;
+        }
+
+        /* Hero */
+        .hero {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        #typewriter {
+            font-size: 48px;
+            font-weight: 700;
+            max-width: 900px;
+            line-height: 1.2;
+        }
+
+        /* URL Search */
+        .search-box {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .search-box input {
+            width: 60%;
+            max-width: 600px;
+            padding: 18px 20px;
+            border-radius: 14px;
+            border: none;
+            font-size: 18px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Feature Grid */
+        .features-section {
+            padding: 120px 60px;
+            background: #ffffff;
+            margin-top: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-box {
+            padding: 30px;
+            border-radius: 18px;
+            background: #f4f4f4;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        .feature-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <h1>SmartAi</h1>
-    <p>Få en gratis smakebit på SEO-innsikt – lås opp full rapport når du er klar.</p>
-  </header>
 
-  <!-- Skjema for URL -->
-  <main>
-    <form id="url-form">
-      <label for="url-input">Din nettside-URL:</label>
-      <input id="url-input" name="url" type="url" placeholder="https://dittdomene.no" required>
-      <button type="submit">Analyser</button>
-    </form>
+<div class="hero-bg" id="bg"></div>
 
-    <!-- Preview-seksjon -->
-    <section id="preview">
-      <h2>Gratis preview</h2>
-      <ul>
-        <li><strong>Tittel:</strong> Mangler eller er for lang</li>
-        <li><strong>Lastetid:</strong> Over anbefalt terskel</li>
-      </ul>
-      <div class="blur">
-        <p>Full rapport: 14 funn og konkrete fikser (låst)</p>
-      </div>
-      <a class="cta" href="#">Lås opp full rapport</a>
-    </section>
-  </main>
+<nav>
+    <div class="logo"><span>Kraft</span>Ai</div>
+</nav>
 
-  <!-- Footer -->
-  <footer>
-    <small>© 2025 SmartAi</small>
-  </footer>
+<section class="hero">
+    <div id="typewriter"></div>
 
-  <!-- Koble til JavaScript -->
-  <script src="script.js"></script>
+    <div class="search-box">
+        <input type="text" placeholder="Skriv inn URL for analyse…">
+    </div>
+</section>
+
+<section class="features-section">
+    <div class="features-grid">
+        <div class="feature-box">Forbedringsmuligheter – Konkrete anbefalinger for å løfte nettstedet ditt</div>
+        <div class="feature-box">Detaljert Analyse – Få innsikt i hva som fungerer og hva som ikke gjør det</div>
+        <div class="feature-box">Teknisk Optimalisering – Fiks feil og forbedre nettstedets struktur</div>
+        <div class="feature-box">Synlighet & SEO‑grunnlag – Bli funnet av de som leter etter deg</div>
+        <div class="feature-box">Hastighet & Ytelse – Optimaliser lastetiden og få besøkende til å bli</div>
+        <div class="feature-box">Sikkerhet & Stabilitet – Beskytt nettstedet ditt og gi en trygg opplevelse</div>
+    </div>
+</section>
+
+<script>
+    // Background dim on scroll
+    window.addEventListener("scroll", () => {
+        let scroll = window.scrollY;
+        let bg = document.getElementById("bg");
+        let dim = 0.65 + scroll / 1500;
+        if (dim > 1) dim = 1;
+        bg.style.filter = `brightness(${1 - (dim - 0.65)})`;
+    });
+
+    // Typewriter loop
+    const messages = [
+        "Fra usynlig til uunnværlig.",
+        "Toppen av Google – der du hører hjemme.",
+        "En nettside som føles lynrask.",
+        "Flere klikk. Flere kunder. Mer vekst.",
+        "Synlighet er fremtidens valuta."
+    ];
+
+    let index = 0;
+    let charIndex = 0;
+    let deleting = false;
+
+    function typeLoop() {
+        const element = document.getElementById("typewriter");
+        const current = messages[index];
+
+        if (!deleting) {
+            element.textContent = current.substring(0, charIndex + 1);
+            charIndex++;
+            if (charIndex === current.length) {
+                deleting = true;
+                setTimeout(typeLoop, 1400);
+                return;
+            }
+        } else {
+            element.textContent = current.substring(0, charIndex - 1);
+            charIndex--;
+            if (charIndex === 0) {
+                deleting = false;
+                index = (index + 1) % messages.length;
+            }
+        }
+        setTimeout(typeLoop, deleting ? 45 : 65);
+    }
+
+    typeLoop();
+</script>
 </body>
 </html>
