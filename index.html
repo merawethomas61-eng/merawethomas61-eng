@@ -6,12 +6,7 @@
   <title>KraftAi</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Inter", sans-serif;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: "Inter", sans-serif; }
 
     body {
       scroll-behavior: smooth;
@@ -20,84 +15,80 @@
       background-position: center;
       background-repeat: no-repeat;
       background-attachment: fixed;
-      color: #0a0a0a;
       margin: 0;
     }
 
-    /* Overlay som dimmer bakgrunnen */
     .bg-overlay {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,1));
-      opacity: 0; /* starter gjennomsiktig */
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: linear-gradient(rgba(255,255,255,0.5), rgba(0,0,0,1));
+      opacity: 0;
       pointer-events: none;
-      z-index: 1; /* over bakgrunnen, under innhold */
+      z-index: 1;
+      transition: opacity 0.3s ease-out;
     }
 
     nav {
-      width: 100%;
-      padding: 25px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 10;
+      width: 100%; padding: 25px 60px;
+      display: flex; justify-content: space-between; align-items: center;
+      position: fixed; top: 0; left: 0; z-index: 10;
       backdrop-filter: blur(8px);
       background: rgba(255,255,255,0.12);
     }
 
-    .logo {
-      font-size: 32px;
-      font-weight: 700;
-    }
-
-    .logo span {
-      color: #ff7a1a;
-    }
+    .logo { font-size: 32px; font-weight: 700; }
+    .logo span { color: #ff7a1a; }
 
     .hero {
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-      z-index: 2; /* over overlay */
+      width: 100%; height: 100vh;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; padding: 0 20px;
+      position: relative; z-index: 2;
     }
 
     #typewriter {
-      font-size: 48px;
-      font-weight: 700;
-      max-width: 900px;
-      line-height: 1.2;
-      color: #ffffff;
-      text-shadow: 0 2px 14px rgba(0,0,0,0.6);
+      font-size: 48px; font-weight: 700; max-width: 900px; line-height: 1.2;
+      color: #ffffff; text-shadow: 0 2px 14px rgba(0,0,0,0.6);
     }
 
+    /* Søkefelt med flytende farger */
     .search-box {
       margin-top: 40px;
       display: flex;
       justify-content: center;
       width: 100%;
+      position: relative;
+    }
+
+    .search-box::before {
+      content: "";
+      position: absolute;
+      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      border-radius: 20px;
+      background: linear-gradient(270deg, #ff7a1a, #ff1ae0, #1a9fff, #00ff9d);
+      background-size: 800% 800%;
+      animation: gradientFlow 8s ease infinite;
+      z-index: -1;
+      filter: blur(12px);
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
 
     .search-box input {
-      width: 60%;
-      max-width: 600px;
+      width: 60%; max-width: 600px;
       padding: 18px 20px;
       border-radius: 14px;
       border: none;
       font-size: 18px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       background: rgba(255,255,255,0.9);
+      position: relative;
+      z-index: 2;
     }
 
     .features-section {
@@ -105,8 +96,7 @@
       background: rgba(255,255,255,0.1);
       backdrop-filter: blur(6px);
       margin-top: 40px;
-      position: relative;
-      z-index: 2;
+      position: relative; z-index: 2;
     }
 
     .features-grid {
@@ -116,83 +106,37 @@
     }
 
     .feature-box {
-      background: #1a1a1a;
-      color: #ffffff;
-      border-radius: 16px;
-      padding: 40px 30px;
+      background: #1a1a1a; color: #ffffff;
+      border-radius: 16px; padding: 40px 30px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 12px;
+      display: flex; flex-direction: column; align-items: flex-start; gap: 12px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    .feature-box:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-    }
-
-    .feature-box h3 {
-      font-size: 22px;
-      font-weight: 700;
-      margin: 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .feature-box p {
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.5;
-      margin: 0;
-      opacity: 0.85;
-    }
+    .feature-box:hover { transform: translateY(-6px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
+    .feature-box h3 { font-size: 22px; font-weight: 700; margin: 0; }
+    .feature-box p { font-size: 17px; font-weight: 400; line-height: 1.5; margin: 0; opacity: 0.85; }
   </style>
 </head>
 <body>
 
-  <!-- Overlay som dimmes ved scroll -->
   <div class="bg-overlay"></div>
 
-  <nav>
-    <div class="logo"><span>Kraft</span>Ai</div>
-  </nav>
+  <nav><div class="logo"><span>Kraft</span>Ai</div></nav>
 
   <section class="hero">
     <div id="typewriter"></div>
-    <div class="search-box">
-      <input type="text" placeholder="Skriv inn URL for analyse…" />
-    </div>
+    <div class="search-box"><input type="text" placeholder="Skriv inn URL for analyse…" /></div>
   </section>
 
   <section class="features-section">
     <div class="features-grid">
-      <div class="feature-box">
-        <h3>Forbedringsmuligheter</h3>
-        <p>Konkrete anbefalinger for å løfte nettstedet ditt</p>
-      </div>
-      <div class="feature-box">
-        <h3>Detaljert Analyse</h3>
-        <p>Få innsikt i hva som fungerer og hva som ikke gjør det</p>
-      </div>
-      <div class="feature-box">
-        <h3>Teknisk Optimalisering</h3>
-        <p>Fiks feil og forbedre nettstedets struktur</p>
-      </div>
-      <div class="feature-box">
-        <h3>Synlighet & SEO‑grunnlag</h3>
-        <p>Bli funnet av de som leter etter deg</p>
-      </div>
-      <div class="feature-box">
-        <h3>Hastighet & Ytelse</h3>
-        <p>Optimaliser lastetiden og få besøkende til å bli</p>
-      </div>
-      <div class="feature-box">
-        <h3>Sikkerhet & Stabilitet</h3>
-        <p>Beskytt nettstedet ditt og gi en trygg opplevelse</p>
-      </div>
+      <div class="feature-box"><h3>Forbedringsmuligheter</h3><p>Konkrete anbefalinger for å løfte nettstedet ditt</p></div>
+      <div class="feature-box"><h3>Detaljert Analyse</h3><p>Få innsikt i hva som fungerer og hva som ikke gjør det</p></div>
+      <div class="feature-box"><h3>Teknisk Optimalisering</h3><p>Fiks feil og forbedre nettstedets struktur</p></div>
+      <div class="feature-box"><h3>Synlighet & SEO‑grunnlag</h3><p>Bli funnet av de som leter etter deg</p></div>
+      <div class="feature-box"><h3>Hastighet & Ytelse</h3><p>Optimaliser lastetiden og få besøkende til å bli</p></div>
+      <div class="feature-box"><h3>Sikkerhet & Stabilitet</h3><p>Beskytt nettstedet ditt og gi en trygg opplevelse</p></div>
     </div>
   </section>
 
@@ -205,34 +149,21 @@
       "Flere klikk. Flere kunder. Mer vekst.",
       "Synlighet er fremtidens valuta."
     ];
-
-    let index = 0;
-    let charIndex = 0;
-    let deleting = false;
-
+    let index = 0, charIndex = 0, deleting = false;
     function typeLoop() {
-      const element = document.getElementById("typewriter");
+      const el = document.getElementById("typewriter");
       const current = messages[index];
-
       if (!deleting) {
-        element.textContent = current.substring(0, charIndex + 1);
+        el.textContent = current.substring(0, charIndex + 1);
         charIndex++;
-        if (charIndex === current.length) {
-          deleting = true;
-          setTimeout(typeLoop, 1400);
-          return;
-        }
+        if (charIndex === current.length) { deleting = true; setTimeout(typeLoop, 1400); return; }
       } else {
-        element.textContent = current.substring(0, charIndex - 1);
+        el.textContent = current.substring(0, charIndex - 1);
         charIndex--;
-        if (charIndex === 0) {
-          deleting = false;
-          index = (index + 1) % messages.length;
-        }
+        if (charIndex === 0) { deleting = false; index = (index + 1) % messages.length; }
       }
       setTimeout(typeLoop, deleting ? 45 : 65);
     }
-
     typeLoop();
 
     // Scroll-dimming av bakgrunn
@@ -240,9 +171,8 @@
       const overlay = document.querySelector(".bg-overlay");
       const scrollY = window.scrollY;
       const maxScroll = document.body.scrollHeight - window.innerHeight;
-
       const progress = scrollY / maxScroll;
-      overlay.style.opacity = Math.min(progress * 1, 1); // maks 100% dimming
+      overlay.style.opacity = Math.min(progress * 1.2, 1);
     });
   </script>
 </body>
