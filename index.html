@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="no">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KraftAi</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
@@ -15,16 +15,28 @@
 
     body {
       scroll-behavior: smooth;
-      background-image: url('background.jpg.png'); /* bruk riktig filnavn */
-      background-size: cover;       /* dekker hele skjermen */
-      background-position: center;  /* sentrer bildet */
-      background-repeat: no-repeat; /* unngå gjentakelse */
-      background-attachment: fixed; /* gjør at bildet følger hele siden */
+      background-image: url('background.jpg.png'); /* bytt til riktig filnavn */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
       color: #0a0a0a;
       margin: 0;
     }
 
-    /* Navbar */
+    /* Overlay som dimmer bakgrunnen */
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      opacity: 0; /* starter gjennomsiktig */
+      pointer-events: none;
+      z-index: 1; /* over bakgrunnen, under innhold */
+    }
+
     nav {
       width: 100%;
       padding: 25px 60px;
@@ -36,7 +48,7 @@
       left: 0;
       z-index: 10;
       backdrop-filter: blur(8px);
-      background: rgba(255,255,255,0.12); /* lett glass-effekt */
+      background: rgba(255,255,255,0.12);
     }
 
     .logo {
@@ -48,7 +60,6 @@
       color: #ff7a1a;
     }
 
-    /* Hero */
     .hero {
       width: 100%;
       height: 100vh;
@@ -58,6 +69,8 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      position: relative;
+      z-index: 2; /* over overlay */
     }
 
     #typewriter {
@@ -65,11 +78,10 @@
       font-weight: 700;
       max-width: 900px;
       line-height: 1.2;
-      color: #0a0a0a;
-      text-shadow: 0 2px 14px rgba(255,255,255,0.4); /* bedre lesbarhet */
+      color: #ffffff;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.6);
     }
 
-    /* URL Search */
     .search-box {
       margin-top: 40px;
       display: flex;
@@ -89,146 +101,149 @@
     }
 
     .features-section {
-  padding: 120px 60px;
-  background: rgba(255, 255, 255, 0.75); /* lett gjennomsiktig */
-  margin-top: 40px;
-  backdrop-filter: blur(4px); /* gir en glass-effekt */
-  border-radius: 12px;
+      padding: 120px 60px;
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(6px);
+      margin-top: 40px;
+      position: relative;
+      z-index: 2;
     }
-box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 
-    
-    <div class="features-grid">
-  <div class="feature-box">
-    <h3>Forbedringsmuligheter</h3>
-    <p>Konkrete anbefalinger for å løfte nettstedet ditt</p>
-  </div>
-  <div class="feature-box">
-    <h3>Detaljert Analyse</h3>
-    <p>Få innsikt i hva som fungerer og hva som ikke gjør det</p>
-  </div>
-  <div class="feature-box">
-    <h3>Teknisk Optimalisering</h3>
-    <p>Fiks feil og forbedre nettstedets struktur</p>
-  </div>
-  <div class="feature-box">
-    <h3>Synlighet & SEO‑grunnlag</h3>
-    <p>Bli funnet av de som leter etter deg</p>
-  </div>
-  <div class="feature-box">
-    <h3>Hastighet & Ytelse</h3>
-    <p>Optimaliser lastetiden og få besøkende til å bli</p>
-  </div>
-  <div class="feature-box">
-    <h3>Sikkerhet & Stabilitet</h3>
-    <p>Beskytt nettstedet ditt og gi en trygg opplevelse</p>
-  </div>
-</div>
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+    }
 
-   .feature-box {
-  background: #1a1a1a;
-  color: #ffffff;
-  border-radius: 16px;
-  padding: 40px 30px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
-}
-
-.feature-box h3 {
-  font-size: 22px;
-  font-weight: 700;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.feature-box p {
-  font-size: 17px;
-  font-weight: 400;
-  line-height: 1.5;
-  margin: 0;
-  opacity: 0.85;
-}
+    .feature-box {
+      background: #1a1a1a;
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 40px 30px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
 
     .feature-box:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 22px rgba(0,0,0,0.15);
+      transform: translateY(-6px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+    }
+
+    .feature-box h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .feature-box p {
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.5;
+      margin: 0;
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo"><span>Kraft</span>Ai</div>
-</nav>
+  <!-- Overlay som dimmes ved scroll -->
+  <div class="bg-overlay"></div>
 
-<section class="hero">
-  <div id="typewriter"></div>
+  <nav>
+    <div class="logo"><span>Kraft</span>Ai</div>
+  </nav>
 
-  <div class="search-box">
-    <input type="text" placeholder="Skriv inn URL for analyse…">
-  </div>
-</section>
+  <section class="hero">
+    <div id="typewriter"></div>
+    <div class="search-box">
+      <input type="text" placeholder="Skriv inn URL for analyse…" />
+    </div>
+  </section>
 
-<section class="features-section">
-  <div class="features-grid">
-    <div class="feature-box">Forbedringsmuligheter – Konkrete anbefalinger for å løfte nettstedet ditt</div>
-    <div class="feature-box">Detaljert Analyse – Få innsikt i hva som fungerer og hva som ikke gjør det</div>
-    <div class="feature-box">Teknisk Optimalisering – Fiks feil og forbedre nettstedets struktur</div>
-    <div class="feature-box">Synlighet & SEO‑grunnlag – Bli funnet av de som leter etter deg</div>
-    <div class="feature-box">Hastighet & Ytelse – Optimaliser lastetiden og få besøkende til å bli</div>
-    <div class="feature-box">Sikkerhet & Stabilitet – Beskytt nettstedet ditt og gi en trygg opplevelse</div>
-  </div>
-</section>
+  <section class="features-section">
+    <div class="features-grid">
+      <div class="feature-box">
+        <h3>Forbedringsmuligheter</h3>
+        <p>Konkrete anbefalinger for å løfte nettstedet ditt</p>
+      </div>
+      <div class="feature-box">
+        <h3>Detaljert Analyse</h3>
+        <p>Få innsikt i hva som fungerer og hva som ikke gjør det</p>
+      </div>
+      <div class="feature-box">
+        <h3>Teknisk Optimalisering</h3>
+        <p>Fiks feil og forbedre nettstedets struktur</p>
+      </div>
+      <div class="feature-box">
+        <h3>Synlighet & SEO‑grunnlag</h3>
+        <p>Bli funnet av de som leter etter deg</p>
+      </div>
+      <div class="feature-box">
+        <h3>Hastighet & Ytelse</h3>
+        <p>Optimaliser lastetiden og få besøkende til å bli</p>
+      </div>
+      <div class="feature-box">
+        <h3>Sikkerhet & Stabilitet</h3>
+        <p>Beskytt nettstedet ditt og gi en trygg opplevelse</p>
+      </div>
+    </div>
+  </section>
 
-<script>
-  // Typewriter loop
-  const messages = [
-    "Fra usynlig til uunnværlig.",
-    "Toppen av Google – der du hører hjemme.",
-    "En nettside som føles lynrask.",
-    "Flere klikk. Flere kunder. Mer vekst.",
-    "Synlighet er fremtidens valuta."
-  ];
+  <script>
+    // Typewriter loop
+    const messages = [
+      "Fra usynlig til uunnværlig.",
+      "Toppen av Google – der du hører hjemme.",
+      "En nettside som føles lynrask.",
+      "Flere klikk. Flere kunder. Mer vekst.",
+      "Synlighet er fremtidens valuta."
+    ];
 
-  let index = 0;
-  let charIndex = 0;
-  let deleting = false;
+    let index = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-  function typeLoop() {
-    const element = document.getElementById("typewriter");
-    const current = messages[index];
+    function typeLoop() {
+      const element = document.getElementById("typewriter");
+      const current = messages[index];
 
-    if (!deleting) {
-      element.textContent = current.substring(0, charIndex + 1);
-      charIndex++;
-      if (charIndex === current.length) {
-        deleting = true;
-        setTimeout(typeLoop, 1400);
-        return;
+      if (!deleting) {
+        element.textContent = current.substring(0, charIndex + 1);
+        charIndex++;
+        if (charIndex === current.length) {
+          deleting = true;
+          setTimeout(typeLoop, 1400);
+          return;
+        }
+      } else {
+        element.textContent = current.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          deleting = false;
+          index = (index + 1) % messages.length;
+        }
       }
-    } else {
-      element.textContent = current.substring(0, charIndex - 1);
-      charIndex--;
-      if (charIndex === 0) {
-        deleting = false;
-        index = (index + 1) % messages.length;
-      }
+      setTimeout(typeLoop, deleting ? 45 : 65);
     }
-    setTimeout(typeLoop, deleting ? 45 : 65);
-  }
 
-  typeLoop();
-</script>
+    typeLoop();
+
+    // Scroll-dimming av bakgrunn
+    window.addEventListener("scroll", () => {
+      const overlay = document.querySelector(".bg-overlay");
+      const scrollY = window.scrollY;
+      const maxScroll = document.body.scrollHeight - window.innerHeight;
+
+      const progress = scrollY / maxScroll;
+      overlay.style.opacity = Math.min(progress * 0.7, 0.7);
+    });
+  </script>
 </body>
 </html>
