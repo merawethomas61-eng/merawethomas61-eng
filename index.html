@@ -18,15 +18,19 @@
       margin: 0;
     }
 
+    /* Overlay med lys fade-in øverst og helt svart nederst */
     .bg-overlay {
       position: fixed;
       top: 0; left: 0;
       width: 100%; height: 100%;
-      background: linear-gradient(rgba(255,255,255,0.5), rgba(0,0,0,1));
-      opacity: 0;
+      background: linear-gradient(
+        rgba(255,255,255,0.4),  /* lys fade-in på toppen */
+        rgba(0,0,0,1)           /* helt svart nederst */
+      );
+      opacity: 0; /* starter gjennomsiktig */
       pointer-events: none;
       z-index: 1;
-      transition: opacity 0.3s ease-out;
+      transition: opacity 0.4s ease-out; /* mykere overgang */
     }
 
     nav {
@@ -64,13 +68,13 @@
     .search-box::before {
       content: "";
       position: absolute;
-      top: -4px; left: -4px; right: -4px; bottom: -4px;
+      top: -8px; left: -8px; right: -8px; bottom: -8px;
       border-radius: 20px;
       background: linear-gradient(270deg, #ff7a1a, #ff1ae0, #1a9fff, #00ff9d);
-      background-size: 800% 800%;
-      animation: gradientFlow 8s ease infinite;
+      background-size: 600% 600%;
+      animation: gradientFlow 6s ease infinite;
       z-index: -1;
-      filter: blur(12px);
+      filter: blur(20px);
     }
 
     @keyframes gradientFlow {
@@ -85,8 +89,7 @@
       border-radius: 14px;
       border: none;
       font-size: 18px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      background: rgba(255,255,255,0.9);
+      background: rgba(255,255,255,0.95);
       position: relative;
       z-index: 2;
     }
@@ -172,7 +175,7 @@
       const scrollY = window.scrollY;
       const maxScroll = document.body.scrollHeight - window.innerHeight;
       const progress = scrollY / maxScroll;
-      overlay.style.opacity = Math.min(progress * 1.2, 1);
+      overlay.style.opacity = Math.min(progress * 1.5, 1); // tydeligere dimming
     });
   </script>
 </body>
