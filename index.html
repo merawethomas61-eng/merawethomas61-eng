@@ -98,21 +98,67 @@
 box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 
     
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-    }
+    <div class="features-grid">
+  <div class="feature-box">
+    <h3>Forbedringsmuligheter</h3>
+    <p>Konkrete anbefalinger for å løfte nettstedet ditt</p>
+  </div>
+  <div class="feature-box">
+    <h3>Detaljert Analyse</h3>
+    <p>Få innsikt i hva som fungerer og hva som ikke gjør det</p>
+  </div>
+  <div class="feature-box">
+    <h3>Teknisk Optimalisering</h3>
+    <p>Fiks feil og forbedre nettstedets struktur</p>
+  </div>
+  <div class="feature-box">
+    <h3>Synlighet & SEO‑grunnlag</h3>
+    <p>Bli funnet av de som leter etter deg</p>
+  </div>
+  <div class="feature-box">
+    <h3>Hastighet & Ytelse</h3>
+    <p>Optimaliser lastetiden og få besøkende til å bli</p>
+  </div>
+  <div class="feature-box">
+    <h3>Sikkerhet & Stabilitet</h3>
+    <p>Beskytt nettstedet ditt og gi en trygg opplevelse</p>
+  </div>
+</div>
 
-    .feature-box {
-      padding: 30px;
-      border-radius: 18px;
-      background: rgba(244,244,244,0.95);
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-      font-size: 18px;
-      font-weight: 500;
-    }
+   .feature-box {
+  background: #1a1a1a;
+  color: #ffffff;
+  border-radius: 16px;
+  padding: 40px 30px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+}
+
+.feature-box h3 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.feature-box p {
+  font-size: 17px;
+  font-weight: 400;
+  line-height: 1.5;
+  margin: 0;
+  opacity: 0.85;
+}
 
     .feature-box:hover {
       transform: scale(1.05);
