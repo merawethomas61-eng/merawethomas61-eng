@@ -88,13 +88,15 @@
       background: rgba(255,255,255,0.9);
     }
 
-    /* Feature Grid */
     .features-section {
-      padding: 120px 60px;
-      background: rgba(255,255,255,0.85); /* semi-transparent så bakgrunn synes */
-      margin-top: 40px;
+  padding: 120px 60px;
+  background: rgba(255, 255, 255, 0.75); /* lett gjennomsiktig */
+  margin-top: 40px;
+  backdrop-filter: blur(4px); /* gir en glass-effekt */
+  border-radius: 12px;
     }
 
+    
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
